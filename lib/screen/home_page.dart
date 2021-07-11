@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login/screen/Questions/q1.dart';
+import 'package:login/screen/login_page.dart';
 import 'package:login/screen/profile.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:login/Data/GlobalData.dart' as Data;
@@ -213,7 +214,9 @@ final Future<FirebaseApp> _initialisation = Firebase.initializeApp();
                  actions: [
                    ElevatedButton(onPressed: ()async{
                       await FirebaseAuth.instance.signOut();
-                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(context, 
+                    MaterialPageRoute(builder: (BuildContext context)=> LoginPage()), 
+                    (route) => false);
                   Fluttertoast.showToast(msg: "Signing out..."); 
                    }, child: Text("Yes")),
                    ElevatedButton(onPressed:(){
